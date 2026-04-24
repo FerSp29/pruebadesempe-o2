@@ -1,0 +1,614 @@
+/* =========================================
+   1. Estilos Base y Variables (Paleta Nocturna)
+   ========================================= */
+:root {
+    --bg-color: #0d0d0d;       /* Fondo muy oscuro */
+    --text-color: #ffffff;      /* Texto blanco */
+    --primary-color: #ffcc00;   /* Dorado/Amarillo principal */
+    --secondary-color: #f1c40f; /* Dorado/Amarillo secundario */
+    --hover-color: #e6b800;     /* Dorado oscuro para hover */
+    --card-bg: #1a1a1a;        /* Fondo de tarjetas ligeramente más claro */
+    --table-header-bg: #262626;
+    --border-color: #333333;
+    --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --container-width: 1200px;
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+}
+
+h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+    text-transform: uppercase;
+}
+
+p {
+    margin-bottom: 1.5rem;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Utilitarios */
+.text-center { text-align: center; }
+.btn-cta {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: var(--primary-color);
+    color: #000;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.btn-cta:hover {
+    background-color: var(--hover-color);
+    transform: translateY(-2px);
+}
+
+/* =========================================
+   2. Header y Navegación (Flexbox)
+   ========================================= */
+header {
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 20px 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 1px solid var(--border-color);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    letter-spacing: 2px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+nav ul {
+    display: flex;
+    gap: 25px;
+}
+
+nav a:not(.btn-cta):hover {
+    color: var(--primary-color);
+}
+
+.nav-cta {
+    padding: 8px 20px;
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-color);
+    border-radius: 3px;
+}
+
+/* =========================================
+   3. Hero Section
+   ========================================= */
+.hero {
+    height: 100vh;
+    /* Reemplazar con imagen real si se tiene */
+    background-image: url('https://via.placeholder.com/1920x1080?text=Festival+Night+Background');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-top: 80px; /* Espacio para el header fijo */
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2.5rem;
+}
+
+/* =========================================
+   4. Tabla de Fechas (Tabla Real)
+   ========================================= */
+.fechas {
+    padding: 100px 0;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+.event-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 0.9rem;
+}
+
+.event-table thead th {
+    background-color: var(--table-header-bg);
+    color: var(--primary-color);
+    text-align: left;
+    padding: 15px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.event-table tbody td {
+    padding: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.event-table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* =========================================
+   5. Sobre el Festival (Flexbox + Lista Semántica)
+   ========================================= */
+.sobre {
+    padding: 100px 0;
+    background-color: var(--card-bg);
+}
+
+.sobre .flex-container {
+    display: flex;
+    gap: 50px;
+    align-items: flex-start;
+}
+
+.sobre-info, .sobre-list {
+    flex: 1;
+}
+
+.sobre h2 {
+    text-align: left;
+    margin-bottom: 2rem;
+}
+
+.sobre h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+}
+
+.semantic-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.semantic-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.semantic-list li .icon {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+/* =========================================
+   6. Zonas Temáticas (Grid Layout)
+   ========================================= */
+.zonas {
+    padding: 100px 0;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.zona-card {
+    background-color: var(--card-bg);
+    padding: 30px;
+    text-align: center;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.zona-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+    box-shadow: 0 5px 15px rgba(255, 204, 0, 0.2);
+}
+
+.zona-card .icon {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.zona-card h3 {
+    font-size: 1rem;
+    margin-bottom: 0;
+    text-transform: uppercase;
+    color: var(--text-color);
+}
+
+/* =========================================
+   7. Galería Responsive (Grid Layout)
+   ========================================= */
+.galeria {
+    padding: 100px 0;
+    background-color: var(--card-bg);
+}
+
+.grid-galeria {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.galeria-item {
+    overflow: hidden;
+    border-radius: 5px;
+    aspect-ratio: 3 / 2; /* Mantiene la proporción */
+}
+
+.galeria-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.galeria-item:hover img {
+    transform: scale(1.05);
+}
+
+/* =========================================
+   8. Footer (Flexbox)
+   ========================================= */
+footer {
+    padding: 80px 0 30px;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.9rem;
+    background-color: #000;
+}
+
+footer .flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: space-between;
+}
+
+footer h4 {
+    color: var(--primary-color);
+    text-transform: uppercase;
+    font-size: 1rem;
+    margin-bottom: 1.2rem;
+}
+
+.footer-logo {
+    flex: 2;
+    min-width: 250px;
+}
+
+.footer-logo p {
+    margin-top: 10px;
+    opacity: 0.7;
+}
+
+.footer-links ul li {
+    margin-bottom: 8px;
+}
+
+.footer-links a:hover {
+    color: var(--primary-color);
+    padding-left: 5px;
+}
+
+.footer-social .social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-social .social-icons a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    background-color: var(--card-bg);
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+}
+
+.footer-social .social-icons a:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transform: scale(1.1);
+}
+
+.footer-newsletter {
+    flex: 1.5;
+    min-width: 250px;
+}
+
+.footer-newsletter form {
+    display: flex;
+    gap: 10px;
+}
+
+.footer-newsletter input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    background-color: #000;
+    color: var(--text-color);
+    border-radius: 5px;
+}
+
+.footer-newsletter button {
+    padding: 10px 20px;
+    font-size: 0.8rem;
+}
+
+.footer-bottom {
+    margin-top: 50px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 20px;
+    text-align: center;
+    opacity: 0.5;
+    font-size: 0.8rem;
+}
+
+/* =========================================
+   9. Media Queries para Responsive (Móvil)
+   ========================================= */
+
+/* Tablets y pantallas pequeñas */
+@media (max-width: 1024px) {
+    .container {
+        max-width: 90%;
+    }
+    
+    .hero h1 {
+        font-size: 3rem;
+    }
+    
+    .sobre .flex-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .sobre h2 {
+        text-align: center;
+    }
+}
+
+/* Móviles (Punto de quiebre principal para adaptar diseño) */
+@media (max-width: 768px) {
+    html {
+        font-size: 14px;
+    }
+    
+    .menu-toggle {
+        display: flex;
+    }
+    
+    nav {
+        display: none; /* Secreto: En producción, usar JS para togglear una clase .active */
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background-color: rgba(0, 0, 0, 0.95);
+        padding: 20px;
+        gap: 15px;
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    nav.active {
+        display: flex;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .nav-cta {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    h2 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+    
+    /* Adaptar tabla para móviles (Truco de data-labels) */
+    .event-table thead {
+        display: none;
+    }
+    
+    .event-table, .event-table tbody, .event-table tr, .event-table td {
+        display: block;
+        width: 100%;
+    }
+    
+    .event-table tr {
+        margin-bottom: 20px;
+        border: 1px solid var(--border-color);
+        border-radius: 5px;
+        background-color: var(--card-bg);
+    }
+    
+    .event-table td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    .event-table td:last-child {
+        border-bottom: none;
+    }
+    
+    .event-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 15px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+        color: var(--primary-color);
+    }
+    
+    .sobre .flex-container {
+        gap: 20px;
+    }
+    
+    .sobre h3 {
+        text-align: center;
+    }
+    
+    .semantic-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .grid-container {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .grid-galeria {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    footer .flex-container {
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+    }
+    
+    .footer-logo, .footer-newsletter {
+        width: 100%;
+    }
+    
+    .footer-social .social-icons {
+        justify-content: center;
+    }
+    
+    .footer-newsletter form {
+        flex-direction: column;
+    }
+}
+
+/* Móviles muy pequeños */
+@media (max-width: 480px) {
+    .grid-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .grid-galeria {
+        grid-template-columns: 1fr;
+    }
+}
